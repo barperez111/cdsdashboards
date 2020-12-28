@@ -25,6 +25,7 @@ class Dashboard(Base):
     source_spawner = relationship(Spawner, foreign_keys=[source_spawner_id], backref=backref('dashboard_source_for', uselist=True))
 
     name = Column(Unicode(255))
+    image = Column(Unicode(255))
     description = Column(Unicode(255), default='')
 
     urlname = Column(Unicode(255), index=True, unique=True, nullable=False)

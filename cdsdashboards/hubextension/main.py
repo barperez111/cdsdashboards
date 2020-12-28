@@ -63,6 +63,7 @@ class BasicDashboardEditHandler(DashboardBaseHandler):
 
         dashboard = None
         dashboard_name = self.get_argument('name', '').strip()
+        dashboard_image = self.get_argument('image', '').strip()
         dashboard_description = self.get_argument('description', '').strip()
         dashboard_presentation_type = ''
         dashboard_start_path = self.get_argument('start_path', '').strip()
@@ -80,6 +81,7 @@ class BasicDashboardEditHandler(DashboardBaseHandler):
                 return self.send_error(403)
 
             dashboard_name = dashboard.name
+            dashboard_image = dashboard.image 
             dashboard_description = dashboard.description
             dashboard_start_path = dashboard.start_path or ''
             dashboard_presentation_type = dashboard.presentation_type
@@ -129,6 +131,7 @@ class BasicDashboardEditHandler(DashboardBaseHandler):
             base_url=self.settings['base_url'],
             dashboard=dashboard,
             dashboard_name=dashboard_name,
+            dashboard_image=dashboard_image,
             dashboard_description=dashboard_description,
             dashboard_start_path=dashboard_start_path,
             dashboard_presentation_type=dashboard_presentation_type,
@@ -182,6 +185,8 @@ class BasicDashboardEditHandler(DashboardBaseHandler):
             group = dashboard.group
 
         dashboard_name = self.get_argument('name').strip()
+        dashboard_image = self.get_argument('image').strip()
+
 
         dashboard_description = self.get_argument('description').strip()
 
@@ -285,6 +290,7 @@ class BasicDashboardEditHandler(DashboardBaseHandler):
 
                     dashboard = Dashboard(
                         name=dashboard_name, urlname=urlname, user=current_user.orm_user, 
+                        image=dashboard_image,
                         description=dashboard_description, start_path=dashboard_start_path, 
                         presentation_type=dashboard_presentation_type,
                         source_spawner=orm_spawner,
@@ -295,6 +301,7 @@ class BasicDashboardEditHandler(DashboardBaseHandler):
 
                 else:
                     dashboard.name = dashboard_name
+                    dashboard.image = dashboard_image
                     dashboard.description = dashboard_description
                     dashboard.start_path = dashboard_start_path
                     dashboard.presentation_type = dashboard_presentation_type
@@ -352,6 +359,7 @@ class BasicDashboardEditHandler(DashboardBaseHandler):
                 base_url=self.settings['base_url'],
                 dashboard=dashboard,
                 dashboard_name=dashboard_name,
+                dashboard_image=dashboard_image,
                 dashboard_description=dashboard_description,
                 dashboard_start_path=dashboard_start_path,
                 dashboard_presentation_type=dashboard_presentation_type,

@@ -27,6 +27,16 @@
                 {% endif %}
 
 
+                <p><label for="image">Dashboard image:</label></p>
+    
+                <p><input type="text" name="image" value="{{ dashboard_image | escape }}" id="dashboard-image" /></p>
+    
+                {% if errors.image %}
+    
+                <p class="error">{{ errors.image | escape }}</p>
+    
+                {% endif %}
+
                 <p><label for="name">Description:</label></p>
     
                 <p><textarea name="description" id="dashboard-description">{{ dashboard_description | escape }}</textarea></p>
